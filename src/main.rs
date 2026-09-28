@@ -4,11 +4,12 @@ fn main() {
 }
 
 fn process(_text: &mut String) -> &str {
-    _text.push_str(" !");
-    if let Some(word_1) = _text.find(' ') {
-        return &_text[0..word_1 + 1];
+    _text.push_str("!");
+    let textik = _text.trim_start();
+    if let Some(word_1) = textik.find(char::is_whitespace) {
+        return &textik[0..word_1];
     } else {
-        return "";
+        return textik.strip_suffix('!').unwrap_or(textik);
     }
 }
 
